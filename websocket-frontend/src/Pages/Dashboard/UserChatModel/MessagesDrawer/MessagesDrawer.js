@@ -9,7 +9,7 @@ import { ViewProfileListActionHandler } from "../../../../Redux/Actions/common/V
 
 function MessagesDrawer({ onClose, open, chatListData, receiverId }) {
   const dispatch = useDispatch();
-  const userListImage = "images/avatar/";
+  const userListImage = process.env.REACT_APP_USER_LIST_IMAGE;
   const [userProfileData, setUserProfileData] = useState(null);
 
   const userprofilelistdata = useSelector(

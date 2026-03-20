@@ -9,6 +9,7 @@ import {
   UserOutlined,
   UserDeleteOutlined,
   MessageOutlined,
+  DeleteOutlined,
 } from "@ant-design/icons";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
@@ -16,7 +17,7 @@ import { Link } from "react-router-dom";
 function UserChatList({ openChatModel, handleView, handleBlockUserChat }) {
   const dispatch = useDispatch();
   const [userListData, setUserListData] = useState([]);
-  const userListImage = "images/avatar/";
+  const userListImage = process.env.REACT_APP_USER_LIST_IMAGE;
   const [searchValue, setSearchValue] = useState("");
   const [refepage, setRefePage] = useState(false);
 
@@ -300,7 +301,7 @@ function UserChatList({ openChatModel, handleView, handleBlockUserChat }) {
                                             Delete
                                           </span>
                                         ),
-                                        icon: <UserDeleteOutlined />,
+                                        icon: <DeleteOutlined />,
                                       },
                                       { type: "divider" },
                                       {

@@ -6,7 +6,7 @@ import { UserProfileListActionHandler } from "../../Redux/Actions/common/UserPro
 
 function Header() {
   const location = useLocation();
-  const userListImage = "images/avatar/";
+  const userListImage = process.env.REACT_APP_USER_LIST_IMAGE;
   const dispatch = useDispatch();
   const Navigate = useNavigate();
   const [userProfileData, setUserProfileData] = useState([]);

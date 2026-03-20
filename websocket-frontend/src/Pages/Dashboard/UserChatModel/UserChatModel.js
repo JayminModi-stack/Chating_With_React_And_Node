@@ -20,7 +20,7 @@ function UserChatModel({
   receiverId,
 }) {
   const dispatch = useDispatch();
-  const userListImage = "images/avatar/";
+  const userListImage = process.env.REACT_APP_USER_LIST_IMAGE;
   const [open, setOpen] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
   const [blockSender, setBlockSender] = useState(false);

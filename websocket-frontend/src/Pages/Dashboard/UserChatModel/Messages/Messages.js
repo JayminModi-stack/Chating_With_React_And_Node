@@ -6,6 +6,7 @@ import { UserListActionHandler } from "../../../../Redux/Actions/common/UserList
 import { ChatListActionHandler } from "../../../../Redux/Actions/common/ChatList";
 
 function Messages({ chatListData, userId, receiverId, searchTerm }) {
+  const userListImage = process.env.REACT_APP_USER_LIST_IMAGE;
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [carouselData, setCarousel] = useState([]);
@@ -108,12 +109,6 @@ function Messages({ chatListData, userId, receiverId, searchTerm }) {
       id="tynChatBody"
       data-simplebar="init"
     >
-      {/* <input
-        placeholder="Search Messages"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        style={{ marginBottom: "10px", width: "100%" }}
-      /> */}
       <div className="simplebar-wrapper" style={{ margin: "0px" }}>
         <div
           className="simplebar-content-wrapper"
@@ -139,6 +134,16 @@ function Messages({ chatListData, userId, receiverId, searchTerm }) {
                             : "incoming"
                         }`}
                       >
+                        {userId !== chatlist.sender_id ? (
+                          <div className="tyn-reply-avatar">
+                            <div className="tyn-media tyn-size-md tyn-circle">
+                              <img
+                                src={`${userListImage}${chatlist?.user_avatar}`}
+                                alt={chatlist.user_name}
+                              />
+                            </div>
+                          </div>
+                        ) : null}
                         <div className="tyn-reply-group">
                           {chatlist.images &&
                             JSON.parse(chatlist.images).length > 0 && (
@@ -221,6 +226,16 @@ function Messages({ chatListData, userId, receiverId, searchTerm }) {
                             <div className="tyn-reply-bubble">
                               <div className="tyn-reply-text">
                                 {highlightText(chatlist.content, searchTerm)}
+                                <div className="meta">
+                                  {chatlist.timestamp
+                                    ? new Date(
+                                        chatlist.timestamp,
+                                      ).toLocaleTimeString([], {
+                                        hour: "2-digit",
+                                        minute: "2-digit",
+                                      })
+                                    : ""}
+                                </div>
                               </div>
                             </div>
                           )}

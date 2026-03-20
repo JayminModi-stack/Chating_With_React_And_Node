@@ -6,7 +6,7 @@ import { UpdateUserProfileActionHandler } from "../../Redux/Actions/common/Updat
 import { useDispatch, useSelector } from "react-redux";
 
 function Profile() {
-  const userListImage = "images/avatar/";
+  const userListImage = process.env.REACT_APP_USER_LIST_IMAGE;
   const dispatch = useDispatch();
   const [userProfileData, setUserProfileData] = useState(null);
 

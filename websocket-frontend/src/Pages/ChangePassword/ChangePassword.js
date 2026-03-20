@@ -6,7 +6,7 @@ import { UpdateUserChangePasswordActionHandler } from "../../Redux/Actions/commo
 import { useDispatch, useSelector } from "react-redux";
 
 function ChangePassword() {
-  const userListImage = "images/avatar/";
+  const userListImage = process.env.REACT_APP_USER_LIST_IMAGE;
   const dispatch = useDispatch();
   const [userProfileData, setUserProfileData] = useState(null);
 

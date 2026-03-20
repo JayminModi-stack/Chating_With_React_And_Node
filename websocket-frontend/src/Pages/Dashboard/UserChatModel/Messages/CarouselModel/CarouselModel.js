@@ -44,25 +44,6 @@ function CarouselModel({ carouselData, isModalOpen, handleOk, handleCancel }) {
             </div>
           );
         })}
-        {/* {carouselData.length > 0 ? (
-          carouselData.map((image, index) => (
-            <div key={index}>
-              <img
-                src={image.url}
-                alt={`Slide ${index + 1}`}
-                style={{
-                  width: "100%",
-                  maxHeight: "300px",
-                  objectFit: "cover",
-                }}
-              />
-            </div>
-          ))
-        ) : (
-          <div>
-            <h3>No Images Available</h3>
-          </div>
-        )} */}
       </Carousel>
     </Modal>
   );

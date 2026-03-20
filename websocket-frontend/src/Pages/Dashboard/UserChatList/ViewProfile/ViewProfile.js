@@ -1,7 +1,8 @@
 import React from "react";
 
 function ViewProfile({ viewProfileList }) {
-  const userListImage = "images/avatar/";
+  const userListImage = process.env.REACT_APP_USER_LIST_IMAGE;
+  const userListCoverImage = process.env.REACT_APP_USER_LIST_COVER_IMAGE;
   return (
     <div
       className="tyn-main tyn-content-inner"
@@ -30,8 +31,8 @@ function ViewProfile({ viewProfileList }) {
             <div className="tyn-profile-cover">
               <img
                 className="tyn-profile-cover-image"
-                src="https://connectme-html.themeyn.com/images/cover/2.jpg"
-                alt=""
+                src={`${userListCoverImage}${"2.jpg"}`}
+                alt="2.jpg"
               />
             </div>
             <div className="tyn-profile-info">
