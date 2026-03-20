@@ -28,7 +28,7 @@ websocket-frontend/
 
 ## 1. Clone Repository
 
-git clone https://github.com/yourusername/whatsapp-clone.git
+git clone https://github.com/JayminModi-stack/Chating_With_React_And_Node/tree/main/websocket-frontend
 
 cd websocket-frontend
 
@@ -72,7 +72,7 @@ websocket-backend/
 
 ## 1. Clone Repository
 
-git clone https://github.com/yourusername/Chating_With_React_And_Node
+git clone https://github.com/JayminModi-stack/Chating_With_React_And_Node/tree/main/websocket-backend
 
 cd websocket-backend
 
@@ -98,7 +98,7 @@ npm install
 
 # Api Collections
 
-https://github.com/yourusername/Api
+https://github.com/JayminModi-stack/Chating_With_React_And_Node/tree/main/Api
 
 ---
 # Template Link
