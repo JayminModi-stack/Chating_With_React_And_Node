@@ -59,7 +59,7 @@ function AddStoriesSettings() {
       formData.append("images[]", file.originFileObj);
       formData.append(
         "captions[]",
-        textValues[file.uid]?.trim() || "Default Caption"
+        textValues[file.uid]?.trim() || "Default Caption",
       );
     });
 
@@ -73,10 +73,10 @@ function AddStoriesSettings() {
     }
   };
   const userselfstorieslistdata = useSelector(
-    (state) => state?.UserSelfStoriesListData?.user_self_stories_list_data
+    (state) => state?.UserSelfStoriesListData?.user_self_stories_list_data,
   );
   const addstorieslistdata = useSelector(
-    (state) => state?.AddStoriesListData?.add_stories_list_data
+    (state) => state?.AddStoriesListData?.add_stories_list_data,
   );
 
   useEffect(() => {

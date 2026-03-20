@@ -27,7 +27,11 @@ const Files = ({ chatListData }) => {
                       return (
                         !isFile && (
                           <div className="tyn-reply-file">
-                            <Link href={media.url} className="tyn-file" download>
+                            <Link
+                              href={media.url}
+                              className="tyn-file"
+                              download
+                            >
                               <div className="tyn-media-group">
                                 <div className="tyn-media tyn-size-lg text-bg-light">
                                   📄

@@ -25,7 +25,7 @@ const Images = ({ chatListData }) => {
                               .pop()
                               .toLowerCase();
                             const isImage = ["png", "jpg", "jpeg"].includes(
-                              fileExtension
+                              fileExtension,
                             );
 
                             return (

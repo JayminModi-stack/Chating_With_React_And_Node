@@ -30,7 +30,7 @@ function UserChatModel({
   const blocksendermessagedisabledata = useSelector(
     (state) =>
       state?.BlockSenderMessageDisableListData
-        ?.block_sender_message_disable_data
+        ?.block_sender_message_disable_data,
   );
 
   const showDrawer = () => {
@@ -52,7 +52,7 @@ function UserChatModel({
   useEffect(() => {
     if (searchTerm) {
       const filteredMessages = chatListData.filter((chat) =>
-        chat.content?.toLowerCase().includes(searchTerm.toLowerCase())
+        chat.content?.toLowerCase().includes(searchTerm.toLowerCase()),
       );
       setFilteredMessages(filteredMessages.length);
     } else {

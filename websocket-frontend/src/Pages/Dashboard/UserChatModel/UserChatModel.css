@@ -1,12 +1,11 @@
-.ant-upload-list-text{
+.ant-upload-list-text {
   display: none;
 }
 
-/* Drawer */
-
-.ant-drawer-body{
+.ant-drawer-body {
   padding: 0px !important;
 }
-.padding_main{
+
+.padding_main {
   padding: 24px;
 }

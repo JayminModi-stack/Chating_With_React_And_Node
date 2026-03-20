@@ -11,7 +11,7 @@ function Profile() {
   const [userProfileData, setUserProfileData] = useState(null);
 
   const userprofilelistdata = useSelector(
-    (state) => state?.UserProfileListData?.user_profile_list_data
+    (state) => state?.UserProfileListData?.user_profile_list_data,
   );
 
   const onFinish = (values) => {
@@ -27,7 +27,6 @@ function Profile() {
       setUserProfileData(userprofilelistdata.user);
     }
   }, [userprofilelistdata]);
-
 
   return (
     <div className="tyn-content tyn-content-page">

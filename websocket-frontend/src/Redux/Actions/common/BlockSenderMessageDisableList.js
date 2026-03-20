@@ -1,17 +1,20 @@
-import { BLOCK_SENDER_MESSAGE_DISABLE_LIST_ERROR, BLOCK_SENDER_MESSAGE_DISABLE_LIST_SUCCESS } from '../../Types/common/Types';
+import {
+  BLOCK_SENDER_MESSAGE_DISABLE_LIST_ERROR,
+  BLOCK_SENDER_MESSAGE_DISABLE_LIST_SUCCESS,
+} from "../../Types/common/Types";
 import { BlockSenderMessageDisableListApi } from "../../Apis/common/ApiConfig";
 
 export const BlockSenderMessageDisableListSuccess = (res) => {
-    return {
-        type: BLOCK_SENDER_MESSAGE_DISABLE_LIST_SUCCESS,
-        payload: res,
-    };
+  return {
+    type: BLOCK_SENDER_MESSAGE_DISABLE_LIST_SUCCESS,
+    payload: res,
+  };
 };
 export const BlockSenderMessageDisableListError = (error) => {
-    return {
-        type: BLOCK_SENDER_MESSAGE_DISABLE_LIST_ERROR,
-        error: error,
-    };
+  return {
+    type: BLOCK_SENDER_MESSAGE_DISABLE_LIST_ERROR,
+    error: error,
+  };
 };
 
 export const BlockSenderMessageDisableListActionHandler = (receiverId) => {
@@ -21,7 +24,7 @@ export const BlockSenderMessageDisableListActionHandler = (receiverId) => {
         .then((res) => {
           const errorMessage = res?.message;
           if (res) {
-            if (res && res.data && res.status === 'success') {
+            if (res && res.data && res.status === "success") {
               dispatch(BlockSenderMessageDisableListSuccess(res.data));
             } else {
               dispatch(BlockSenderMessageDisableListError(errorMessage));
@@ -31,7 +34,9 @@ export const BlockSenderMessageDisableListActionHandler = (receiverId) => {
           }
         })
         .catch((err) => {
-          dispatch(BlockSenderMessageDisableListError("Something Went Wrong!!!"));
+          dispatch(
+            BlockSenderMessageDisableListError("Something Went Wrong!!!"),
+          );
         });
     } catch (err) {
       dispatch(BlockSenderMessageDisableListError(err));

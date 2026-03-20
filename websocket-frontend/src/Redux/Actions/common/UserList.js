@@ -1,18 +1,18 @@
-import Swal from 'sweetalert2';
-import { USERLIST_ERROR, USERLIST_SUCCESS } from '../../Types/common/Types';
+import Swal from "sweetalert2";
+import { USERLIST_ERROR, USERLIST_SUCCESS } from "../../Types/common/Types";
 import { UserListApi } from "../../Apis/common/ApiConfig";
 
 export const UserListSuccess = (res) => {
-    return {
-        type: USERLIST_SUCCESS,
-        payload: res,
-    };
+  return {
+    type: USERLIST_SUCCESS,
+    payload: res,
+  };
 };
 export const UserListError = (error) => {
-    return {
-        type: USERLIST_ERROR,
-        error: error,
-    };
+  return {
+    type: USERLIST_ERROR,
+    error: error,
+  };
 };
 
 export const UserListActionHandler = () => {
@@ -22,7 +22,7 @@ export const UserListActionHandler = () => {
         .then((res) => {
           const errorMessage = res?.message;
           if (res) {
-            if (res && res.data && res.status === 'success') {
+            if (res && res.data && res.status === "success") {
               dispatch(UserListSuccess(res.data));
             } else {
               Swal.fire({

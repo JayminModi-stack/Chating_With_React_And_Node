@@ -12,11 +12,11 @@ function Header() {
   const [userProfileData, setUserProfileData] = useState([]);
   const isActive = location.pathname;
   const [themeMode, setThemeMode] = useState(
-    localStorage.getItem("themeMode") || "light"
+    localStorage.getItem("themeMode") || "light",
   );
 
   const userprofilelistdata = useSelector(
-    (state) => state?.UserProfileListData?.user_profile_list_data
+    (state) => state?.UserProfileListData?.user_profile_list_data,
   );
 
   const toggleTheme = (theme) => {

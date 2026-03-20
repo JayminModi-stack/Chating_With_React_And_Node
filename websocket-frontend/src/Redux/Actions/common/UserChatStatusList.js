@@ -1,28 +1,31 @@
-import Swal from 'sweetalert2';
-import { USER_CHAT_STATUS_LIST_ERROR, USER_CHAT_STATUS_LIST_SUCCESS } from '../../Types/common/Types';
+import Swal from "sweetalert2";
+import {
+  USER_CHAT_STATUS_LIST_ERROR,
+  USER_CHAT_STATUS_LIST_SUCCESS,
+} from "../../Types/common/Types";
 import { UserChatStatusListApi } from "../../Apis/common/ApiConfig";
 
 export const UserChatStatusListSuccess = (res) => {
-    return {
-        type: USER_CHAT_STATUS_LIST_SUCCESS,
-        payload: res,
-    };
+  return {
+    type: USER_CHAT_STATUS_LIST_SUCCESS,
+    payload: res,
+  };
 };
 export const UserChatStatusListError = (error) => {
-    return {
-        type: USER_CHAT_STATUS_LIST_ERROR,
-        error: error,
-    };
+  return {
+    type: USER_CHAT_STATUS_LIST_ERROR,
+    error: error,
+  };
 };
 
 export const UserChatStatusActionHandler = (receiverId) => {
   return (dispatch) => {
     try {
-        UserChatStatusListApi(receiverId)
+      UserChatStatusListApi(receiverId)
         .then((res) => {
           const errorMessage = res?.message;
           if (res) {
-            if (res && res.data && res.status === 'success') {
+            if (res && res.data && res.status === "success") {
               dispatch(UserChatStatusListSuccess(res.data));
             } else {
               Swal.fire({

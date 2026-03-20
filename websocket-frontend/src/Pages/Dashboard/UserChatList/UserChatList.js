@@ -19,18 +19,17 @@ function UserChatList({ openChatModel, handleView, handleBlockUserChat }) {
   const userListImage = "images/avatar/";
   const [searchValue, setSearchValue] = useState("");
   const [refepage, setRefePage] = useState(false);
-  // const [socket, setSocket] = useState(null);
 
   const userlistdata = useSelector(
-    (state) => state?.UserListData?.user_list_data
+    (state) => state?.UserListData?.user_list_data,
   );
 
   const deleteuserchatlistdata = useSelector(
-    (state) => state?.DeleteUserChatListData?.delete_user_chat_data
+    (state) => state?.DeleteUserChatListData?.delete_user_chat_data,
   );
 
   const blockuserchatlistdata = useSelector(
-    (state) => state?.BlockUserChatListData?.block_user_chat_data
+    (state) => state?.BlockUserChatListData?.block_user_chat_data,
   );
 
   useEffect(() => {
@@ -47,7 +46,6 @@ function UserChatList({ openChatModel, handleView, handleBlockUserChat }) {
 
   useEffect(() => {
     if (blockuserchatlistdata) {
-      console.log("blockuserchatlistdata===>", blockuserchatlistdata);
       dispatch(UserListActionHandler());
     }
   }, [blockuserchatlistdata, dispatch]);
@@ -57,7 +55,7 @@ function UserChatList({ openChatModel, handleView, handleBlockUserChat }) {
     setSearchValue(value);
     if (value.length > 0) {
       const filteredList = userlistdata.users.filter((user) =>
-        user.username.toLowerCase().includes(value.toLowerCase())
+        user.username.toLowerCase().includes(value.toLowerCase()),
       );
       setUserListData(filteredList);
     } else {
@@ -68,7 +66,6 @@ function UserChatList({ openChatModel, handleView, handleBlockUserChat }) {
   useEffect(() => {
     dispatch(UserListActionHandler());
     const newSocket = new WebSocket("ws://localhost:8080");
-    // setSocket(newSocket);
     newSocket.onmessage = (event) => {
       const messageData = JSON.parse(event.data);
       if (messageData) {
@@ -113,7 +110,7 @@ function UserChatList({ openChatModel, handleView, handleBlockUserChat }) {
   const handleBlockUser = (value) => {
     if (value === 1) {
       const filteredUsers = userListData.filter(
-        (user) => user.block_user_flag === value
+        (user) => user.block_user_flag === value,
       );
       setUserListData(filteredUsers);
     } else {
@@ -313,7 +310,7 @@ function UserChatList({ openChatModel, handleView, handleBlockUserChat }) {
                                             <span
                                               onClick={() =>
                                                 handleBlockUserChat(
-                                                  user.user_id
+                                                  user.user_id,
                                                 )
                                               }
                                             >

@@ -29,18 +29,18 @@ function Dashboard() {
   const [viewProfile, setViewProfile] = useState(false);
 
   const chatlistdata = useSelector(
-    (state) => state?.ChatListData?.chat_list_data
+    (state) => state?.ChatListData?.chat_list_data,
   );
   const viewprofilelistdata = useSelector(
-    (state) => state?.ViewProfileListData?.view_profile_list_data
+    (state) => state?.ViewProfileListData?.view_profile_list_data,
   );
 
   const userreceiverlistdata = useSelector(
-    (state) => state?.UserReceiverListData?.user_receiver_list_data
+    (state) => state?.UserReceiverListData?.user_receiver_list_data,
   );
 
   const blockusermessagedata = useSelector(
-    (state) => state?.BlockUserMessageListData?.block_user_message_data
+    (state) => state?.BlockUserMessageListData?.block_user_message_data,
   );
 
   const openChatModel = (receiverId) => {
@@ -85,11 +85,10 @@ function Dashboard() {
         websocket.onmessage = (event) => {
           const data = JSON.parse(event.data);
           if (data.deleteMessageId) {
-            // Remove the deleted message from the chat list
             setChatListData((prevChatListData) =>
               prevChatListData.filter(
-                (chat) => chat.id !== data.deleteMessageId
-              )
+                (chat) => chat.id !== data.deleteMessageId,
+              ),
             );
           } else {
             setChatListData((prevChatListData) => [
@@ -119,7 +118,7 @@ function Dashboard() {
 
         const formData = new FormData();
         fileList.forEach((file) =>
-          formData.append("images", file.originFileObj)
+          formData.append("images", file.originFileObj),
         );
 
         try {
@@ -190,7 +189,7 @@ function Dashboard() {
   };
 
   const blockuserchatlistdata = useSelector(
-    (state) => state?.BlockUserChatListData?.block_user_chat_data
+    (state) => state?.BlockUserChatListData?.block_user_chat_data,
   );
   useEffect(() => {
     if (blockuserchatlistdata) {

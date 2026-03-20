@@ -12,11 +12,11 @@ function UserStories() {
   const { id } = useParams();
 
   const userstorieslistdata = useSelector(
-    (state) => state?.UserStoriesListData?.user_stories_list_data
+    (state) => state?.UserStoriesListData?.user_stories_list_data,
   );
 
   const userviewstorieslistdata = useSelector(
-    (state) => state?.UserViewStoriesListData?.user_view_stories_list_data
+    (state) => state?.UserViewStoriesListData?.user_view_stories_list_data,
   );
 
   useEffect(() => {

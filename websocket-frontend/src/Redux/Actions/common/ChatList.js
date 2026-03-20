@@ -1,18 +1,18 @@
-import Swal from 'sweetalert2';
-import { CHATLIST_ERROR, CHATLIST_SUCCESS } from '../../Types/common/Types';
+import Swal from "sweetalert2";
+import { CHATLIST_ERROR, CHATLIST_SUCCESS } from "../../Types/common/Types";
 import { ChatListApi } from "../../Apis/common/ApiConfig";
 
 export const ChatListSuccess = (res) => {
-    return {
-        type: CHATLIST_SUCCESS,
-        payload: res,
-    };
+  return {
+    type: CHATLIST_SUCCESS,
+    payload: res,
+  };
 };
 export const ChatListError = (error) => {
-    return {
-        type: CHATLIST_ERROR,
-        error: error,
-    };
+  return {
+    type: CHATLIST_ERROR,
+    error: error,
+  };
 };
 
 export const ChatListActionHandler = (receiverID) => {
@@ -22,7 +22,7 @@ export const ChatListActionHandler = (receiverID) => {
         .then((res) => {
           const errorMessage = res?.message;
           if (res) {
-            if (res && res.data && res.status === 'success') {
+            if (res && res.data && res.status === "success") {
               dispatch(ChatListSuccess(res.data));
             } else {
               Swal.fire({

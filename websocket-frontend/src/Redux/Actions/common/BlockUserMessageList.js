@@ -1,18 +1,21 @@
 import { message } from "antd";
-import { BLOCK_USER_MESSAGE_LIST_ERROR, BLOCK_USER_MESSAGE_LIST_SUCCESS } from '../../Types/common/Types';
+import {
+  BLOCK_USER_MESSAGE_LIST_ERROR,
+  BLOCK_USER_MESSAGE_LIST_SUCCESS,
+} from "../../Types/common/Types";
 import { BlockUserMessageListApi } from "../../Apis/common/ApiConfig";
 
 export const BlockUserMessageListSuccess = (res) => {
-    return {
-        type: BLOCK_USER_MESSAGE_LIST_SUCCESS,
-        payload: res,
-    };
+  return {
+    type: BLOCK_USER_MESSAGE_LIST_SUCCESS,
+    payload: res,
+  };
 };
 export const BlockUserMessageListError = (error) => {
-    return {
-        type: BLOCK_USER_MESSAGE_LIST_ERROR,
-        error: error,
-    };
+  return {
+    type: BLOCK_USER_MESSAGE_LIST_ERROR,
+    error: error,
+  };
 };
 
 export const BlockUserMessageListActionHandler = (receiverId) => {
@@ -22,7 +25,7 @@ export const BlockUserMessageListActionHandler = (receiverId) => {
         .then((res) => {
           const errorMessage = res?.message;
           if (res) {
-            if (res && res.data && res.status === 'success') {
+            if (res && res.data && res.status === "success") {
               dispatch(BlockUserMessageListSuccess(res.data));
             } else {
               message.error("This user is blocked");

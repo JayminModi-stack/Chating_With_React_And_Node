@@ -3,8 +3,6 @@ import CarouselModel from "./CarouselModel/CarouselModel";
 import { UserChatStatusActionHandler } from "../../../../Redux/Actions/common/UserChatStatusList";
 import { useDispatch, useSelector } from "react-redux";
 import { UserListActionHandler } from "../../../../Redux/Actions/common/UserList";
-// import { UserChatDeleteListActionHandler } from "../../../../Redux/Actions/common/UserChatDeleteList";
-// import Swal from "sweetalert2";
 import { ChatListActionHandler } from "../../../../Redux/Actions/common/ChatList";
 
 function Messages({ chatListData, userId, receiverId, searchTerm }) {
@@ -13,11 +11,11 @@ function Messages({ chatListData, userId, receiverId, searchTerm }) {
   const [carouselData, setCarousel] = useState([]);
 
   const userchatstatuslistdata = useSelector(
-    (state) => state?.UserChatStatusListData?.user_chat_status_list_data
+    (state) => state?.UserChatStatusListData?.user_chat_status_list_data,
   );
 
   const userchatdeletelistdata = useSelector(
-    (state) => state?.UserChatDeleteListData?.user_chat_delete_list_data
+    (state) => state?.UserChatDeleteListData?.user_chat_delete_list_data,
   );
 
   let lastDate = null;
@@ -100,7 +98,7 @@ function Messages({ chatListData, userId, receiverId, searchTerm }) {
         </strong>
       ) : (
         part
-      )
+      ),
     );
   };
 
@@ -161,7 +159,7 @@ function Messages({ chatListData, userId, receiverId, searchTerm }) {
                                         "jpeg",
                                       ].includes(fileExtension);
                                       const isVideo = ["mp4", "webm"].includes(
-                                        fileExtension
+                                        fileExtension,
                                       );
 
                                       return (
@@ -213,7 +211,7 @@ function Messages({ chatListData, userId, receiverId, searchTerm }) {
                                           )}
                                         </div>
                                       );
-                                    }
+                                    },
                                   )}
                                 </div>
                               </div>

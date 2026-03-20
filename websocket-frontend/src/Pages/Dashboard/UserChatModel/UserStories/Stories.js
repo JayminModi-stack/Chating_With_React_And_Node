@@ -13,15 +13,15 @@ function Stories() {
   const [userStoriesListData, setUserStoriesListData] = useState([]);
   const [userStoriesViewListData, setUserStoriesViewListData] = useState([]);
   const usergetstorieslistdata = useSelector(
-    (state) => state?.UserGetStoriesListData?.user_get_stories_list_data
+    (state) => state?.UserGetStoriesListData?.user_get_stories_list_data,
   );
 
   const userstorieslistdata = useSelector(
-    (state) => state?.UserStoriesListData?.user_stories_list_data
+    (state) => state?.UserStoriesListData?.user_stories_list_data,
   );
 
   const userviewstorieslistdata = useSelector(
-    (state) => state?.UserViewStoriesListData?.user_view_stories_list_data
+    (state) => state?.UserViewStoriesListData?.user_view_stories_list_data,
   );
 
   useEffect(() => {
@@ -169,7 +169,7 @@ function Stories() {
                                             </div>
                                           </div>
                                         </li>
-                                      )
+                                      ),
                                     )
                                   ) : (
                                     <li className="no-results">

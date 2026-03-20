@@ -1,18 +1,21 @@
-import Swal from 'sweetalert2';
-import { USER_PROFILE_LIST_ERROR, USER_PROFILE_LIST_SUCCESS } from '../../Types/common/Types';
+import Swal from "sweetalert2";
+import {
+  USER_PROFILE_LIST_ERROR,
+  USER_PROFILE_LIST_SUCCESS,
+} from "../../Types/common/Types";
 import { UserProfileListApi } from "../../Apis/common/ApiConfig";
 
 export const UserProfileListSuccess = (res) => {
-    return {
-        type: USER_PROFILE_LIST_SUCCESS,
-        payload: res,
-    };
+  return {
+    type: USER_PROFILE_LIST_SUCCESS,
+    payload: res,
+  };
 };
 export const UserProfileListError = (error) => {
-    return {
-        type: USER_PROFILE_LIST_ERROR,
-        error: error,
-    };
+  return {
+    type: USER_PROFILE_LIST_ERROR,
+    error: error,
+  };
 };
 
 export const UserProfileListActionHandler = () => {
@@ -22,7 +25,7 @@ export const UserProfileListActionHandler = () => {
         .then((res) => {
           const errorMessage = res?.message;
           if (res) {
-            if (res && res.data && res.status === 'success') {
+            if (res && res.data && res.status === "success") {
               dispatch(UserProfileListSuccess(res.data));
             } else {
               Swal.fire({

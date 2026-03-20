@@ -168,7 +168,7 @@ export const UpdateUserProfileListApi = async (data) => {
       { username },
       {
         headers: { Authorization: `Bearer ${token}` },
-      }
+      },
     );
 
     if (response && response.status === 200) {
@@ -228,7 +228,7 @@ export const UserViewStoriesListApi = async (id, receiverID) => {
     const response = await axios.post(
       `${baseUrl}/user_view_stories_list`,
       { id, receiverID },
-      { headers: { Authorization: `Bearer ${token}` } }
+      { headers: { Authorization: `Bearer ${token}` } },
     );
 
     if (response && response.status === 200) {
@@ -363,7 +363,7 @@ export const UpdateUserChangePasswordListApi = async (data) => {
       { data },
       {
         headers: { Authorization: `Bearer ${token}` },
-      }
+      },
     );
 
     if (response && response.status === 200) {
@@ -392,7 +392,7 @@ export const UserChatStatusListApi = async (receiverId) => {
       { receiverId },
       {
         headers: { Authorization: `Bearer ${token}` },
-      }
+      },
     );
 
     if (response && response.status === 200) {
@@ -421,7 +421,7 @@ export const UserChatDeleteListApi = async (deleteId) => {
       { deleteId },
       {
         headers: { Authorization: `Bearer ${token}` },
-      }
+      },
     );
 
     if (response && response.status === 200) {
@@ -448,7 +448,7 @@ export const DeleteUserChatListApi = async (receiverId) => {
     const response = await axios.post(
       `${baseUrl}/delete_user_chat_list`,
       { receiverId },
-      { headers: { Authorization: `Bearer ${token}` } }
+      { headers: { Authorization: `Bearer ${token}` } },
     );
 
     if (response && response.status === 200) {
@@ -482,7 +482,7 @@ export const ViewProfileListApi = async (viewId) => {
     const response = await axios.post(
       `${baseUrl}/view_profile_list`,
       { viewId },
-      { headers: { Authorization: `Bearer ${token}` } }
+      { headers: { Authorization: `Bearer ${token}` } },
     );
 
     if (response && response.status === 200) {
@@ -516,7 +516,7 @@ export const BlockUserChatListApi = async (receiverId) => {
     const response = await axios.post(
       `${baseUrl}/block_user`,
       { receiverId },
-      { headers: { Authorization: `Bearer ${token}` } }
+      { headers: { Authorization: `Bearer ${token}` } },
     );
 
     if (response && response.status === 200) {
@@ -550,7 +550,7 @@ export const BlockUserMessageListApi = async (receiverId) => {
     const response = await axios.post(
       `${baseUrl}/block_user_message`,
       { receiverId },
-      { headers: { Authorization: `Bearer ${token}` } }
+      { headers: { Authorization: `Bearer ${token}` } },
     );
 
     if (response && response.status === 200) {
@@ -584,7 +584,7 @@ export const BlockSenderMessageDisableListApi = async (receiverId) => {
     const response = await axios.post(
       `${baseUrl}/block_sender_message_disable_text`,
       { receiverId },
-      { headers: { Authorization: `Bearer ${token}` } }
+      { headers: { Authorization: `Bearer ${token}` } },
     );
 
     if (response && response.status === 200) {

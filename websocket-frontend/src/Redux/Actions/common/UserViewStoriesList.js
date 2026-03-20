@@ -18,10 +18,7 @@ export const UserViewStoriesListError = (error) => {
   };
 };
 
-export const UserViewStoriesListActionHandler = (
-  id,
-  receiverID
-) => {
+export const UserViewStoriesListActionHandler = (id, receiverID) => {
   return (dispatch) => {
     try {
       UserViewStoriesListApi(id, receiverID)

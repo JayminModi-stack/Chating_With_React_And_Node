@@ -13,7 +13,7 @@ function MessagesDrawer({ onClose, open, chatListData, receiverId }) {
   const [userProfileData, setUserProfileData] = useState(null);
 
   const userprofilelistdata = useSelector(
-    (state) => state?.ViewProfileListData?.view_profile_list_data
+    (state) => state?.ViewProfileListData?.view_profile_list_data,
   );
 
   useEffect(() => {

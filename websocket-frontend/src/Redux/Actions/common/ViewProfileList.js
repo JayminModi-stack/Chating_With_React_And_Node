@@ -1,18 +1,21 @@
-import Swal from 'sweetalert2';
-import { VIEW_PROFILE_LIST_ERROR, VIEW_PROFILE_LIST_SUCCESS } from '../../Types/common/Types';
+import Swal from "sweetalert2";
+import {
+  VIEW_PROFILE_LIST_ERROR,
+  VIEW_PROFILE_LIST_SUCCESS,
+} from "../../Types/common/Types";
 import { ViewProfileListApi } from "../../Apis/common/ApiConfig";
 
 export const ViewProfileListSuccess = (res) => {
-    return {
-        type: VIEW_PROFILE_LIST_SUCCESS,
-        payload: res,
-    };
+  return {
+    type: VIEW_PROFILE_LIST_SUCCESS,
+    payload: res,
+  };
 };
 export const ViewProfileListError = (error) => {
-    return {
-        type: VIEW_PROFILE_LIST_ERROR,
-        error: error,
-    };
+  return {
+    type: VIEW_PROFILE_LIST_ERROR,
+    error: error,
+  };
 };
 
 export const ViewProfileListActionHandler = (viewId) => {
@@ -22,7 +25,7 @@ export const ViewProfileListActionHandler = (viewId) => {
         .then((res) => {
           const errorMessage = res?.message;
           if (res) {
-            if (res && res.data && res.status === 'success') {
+            if (res && res.data && res.status === "success") {
               dispatch(ViewProfileListSuccess(res.data));
             } else {
               Swal.fire({

@@ -17,7 +17,7 @@ export const getUserIdFromToken = () => {
 
     const payload = tokenParts[1];
     const decodedPayload = JSON.parse(
-      atob(payload.replace(/-/g, "+").replace(/_/g, "/"))
+      atob(payload.replace(/-/g, "+").replace(/_/g, "/")),
     );
 
     return decodedPayload.userId;

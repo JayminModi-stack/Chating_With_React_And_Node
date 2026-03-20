@@ -57,7 +57,9 @@ export const UpdateUserChangePasswordActionHandler = (values) => {
             showConfirmButton: false,
             timer: 1500,
           });
-          dispatch(UpdateUserChangePasswordListError("Something went wrong!!!"));
+          dispatch(
+            UpdateUserChangePasswordListError("Something went wrong!!!"),
+          );
         });
     } catch (err) {
       dispatch(UpdateUserChangePasswordListError(err));

@@ -1,18 +1,21 @@
-import Swal from 'sweetalert2';
-import { USERRECEIVERLIST_ERROR, USERRECEIVERLIST_SUCCESS } from '../../Types/common/Types';
+import Swal from "sweetalert2";
+import {
+  USERRECEIVERLIST_ERROR,
+  USERRECEIVERLIST_SUCCESS,
+} from "../../Types/common/Types";
 import { UserReceiverListApi } from "../../Apis/common/ApiConfig";
 
 export const UserReceiverListSuccess = (res) => {
-    return {
-        type: USERRECEIVERLIST_SUCCESS,
-        payload: res,
-    };
+  return {
+    type: USERRECEIVERLIST_SUCCESS,
+    payload: res,
+  };
 };
 export const UserReceiverListError = (error) => {
-    return {
-        type: USERRECEIVERLIST_ERROR,
-        error: error,
-    };
+  return {
+    type: USERRECEIVERLIST_ERROR,
+    error: error,
+  };
 };
 
 export const UserReceiverListActionHandler = (receiverID) => {
@@ -22,7 +25,7 @@ export const UserReceiverListActionHandler = (receiverID) => {
         .then((res) => {
           const errorMessage = res?.message;
           if (res) {
-            if (res && res.data && res.status === 'success') {
+            if (res && res.data && res.status === "success") {
               dispatch(UserReceiverListSuccess(res.data));
             } else {
               Swal.fire({
