@@ -177,93 +177,6 @@ app.get("/user_list", async (req, res) => {
   }
 });
 
-// app.get("/user_list", async (req, res) => {
-//   try {
-//     const token = req.headers.authorization?.split(" ")[1];
-
-//     if (!token) {
-//       return res.status(403).json({ error: "No token provided" });
-//     }
-
-//     const decoded = jwt.verify(token, SECRET_KEY);
-//     const userId = decoded.userId;
-
-//     const query = `
-//   SELECT
-//     users.id AS user_id,
-//     users.username,
-//     users.avatar,
-
-//     (
-//       SELECT content
-//     FROM messages
-//     WHERE ((sender_id = users.id AND receiver_id = ${userId})
-//         OR (sender_id = ${userId} AND receiver_id = users.id))
-//     AND (JSON_CONTAINS(delete_user_id, ${userId}) = 0 OR delete_user_id IS NULL)
-//     ORDER BY timestamp DESC
-//     LIMIT 1
-//     ) AS last_message,
-//     (
-//         CASE
-//           WHEN (
-//             SELECT receiver_id
-//             FROM messages
-//             WHERE ((sender_id = users.id AND receiver_id = ${userId})
-//                OR (sender_id = ${userId} AND receiver_id = users.id))
-//                AND (JSON_CONTAINS(delete_user_id, ${userId}) = 0 OR delete_user_id IS NULL)
-//             ORDER BY timestamp DESC
-//             LIMIT 1
-//           ) = ${userId}
-//           THEN (
-//             SELECT status
-//             FROM messages
-//             WHERE sender_id = users.id
-//               AND receiver_id = ${userId}
-//               AND (JSON_CONTAINS(delete_user_id, ${userId}) = 0 OR delete_user_id IS NULL)
-//             ORDER BY timestamp DESC
-//             LIMIT 1
-//           )
-//           ELSE 'read'
-//         END
-//       ) AS last_status,
-//     (
-//       SELECT timestamp
-//       FROM messages
-//       WHERE ((sender_id = users.id AND receiver_id = ${userId})
-//          OR (sender_id = ${userId} AND receiver_id = users.id))
-//          AND (JSON_CONTAINS(delete_user_id, ${userId}) = 0 OR delete_user_id IS NULL)
-//       ORDER BY timestamp DESC
-//       LIMIT 1
-//     ) AS last_message_time,
-//     (
-//       SELECT COUNT(*)
-//       FROM messages
-//       WHERE receiver_id = ${userId}
-//         AND sender_id = users.id
-//         AND status = 'unread'
-//         AND (JSON_CONTAINS(delete_user_id, ${userId}) = 0 OR delete_user_id IS NULL)
-//     ) AS unread_count
-
-//   FROM users
-//   WHERE users.id != ${userId}
-//   ORDER BY last_message_time DESC;
-// `;
-
-//     db.query(query, (err, results) => {
-//       if (err) {
-//         return res.status(500).json({
-//           error: "Failed to retrieve user list",
-//           details: err.message,
-//         });
-//       }
-
-//       res.status(200).json({ users: results });
-//     });
-//   } catch (error) {
-//     return res.status(401).json({ error: "Invalid token" });
-//   }
-// });
-
 app.get("/chat_list", async (req, res) => {
   try {
     const token = req.headers.authorization?.split(" ")[1];
@@ -324,24 +237,22 @@ app.post("/add_stories_list", upload_stories.any(), async (req, res) => {
     const decoded = jwt.verify(token, SECRET_KEY);
     const userId = decoded.userId;
 
-    const captions = req.body.captions || []; // Captions from frontend
+    const captions = req.body.captions || []; 
 
     if (!req.files || req.files.length === 0) {
       return res.status(400).json({ error: "No images uploaded" });
     }
 
-    // Validate if captions array length matches files array length
     if (captions.length !== req.files.length) {
       return res
         .status(400)
         .json({ error: "Captions count mismatch with images" });
     }
 
-    // Prepare data for batch insert
     const imageData = req.files.map((file, index) => [
       userId,
       `/uploads/stories/${file.filename}`,
-      captions[index] || "Untitled Story", // Use a default title if empty
+      captions[index] || "Untitled Story",
       new Date(),
       new Date(),
     ]);
@@ -354,7 +265,6 @@ app.post("/add_stories_list", upload_stories.any(), async (req, res) => {
         return res.status(500).json({ error: "Failed to upload images" });
       }
 
-      // Fetch updated stories and count
       const baseUrl = `http://localhost:3001`;
 
       const fetchSql = `
@@ -430,7 +340,7 @@ app.get("/user_receiver_list", async (req, res) => {
           return res.status(404).json({ error: "User not found" });
         }
 
-        res.status(200).json({ user: results[0] }); // Return only the first record
+        res.status(200).json({ user: results[0] }); 
       }
     );
   } catch (error) {
@@ -586,7 +496,6 @@ app.put("/update_user_change_password_list", async (req, res) => {
     const { old_password, new_password, confirm_password } =
       req.body.data || {};
 
-    // Validate input
     if (!old_password || !new_password || !confirm_password) {
       return res.status(400).json({ error: "All fields are required" });
     }
@@ -601,7 +510,6 @@ app.put("/update_user_change_password_list", async (req, res) => {
         .json({ error: "Password must be at least 8 characters long" });
     }
 
-    // Fetch the user's existing password
     const getPasswordQuery = "SELECT password FROM users WHERE id = ?";
     db.query(getPasswordQuery, [userId], async (err, results) => {
       if (err) {
@@ -614,16 +522,13 @@ app.put("/update_user_change_password_list", async (req, res) => {
 
       const storedPasswordHash = results[0].password;
 
-      // Verify old password
       const isMatch = await bcrypt.compare(old_password, storedPasswordHash);
       if (!isMatch) {
         return res.status(400).json({ error: "Old password is incorrect" });
       }
 
-      // Hash new password
       const hashedNewPassword = await bcrypt.hash(new_password, 10);
 
-      // Update the password in the database
       const updatePasswordQuery = "UPDATE users SET password = ? WHERE id = ?";
       db.query(
         updatePasswordQuery,
@@ -680,7 +585,6 @@ app.get("/user_self_stories_list", async (req, res) => {
         AND created_at BETWEEN DATE_SUB(NOW(), INTERVAL 24 HOUR) AND NOW()
     `;
 
-    // Execute both queries
     db.query(sqlQueryStories, [baseUrl, userId], (err, storyResults) => {
       if (err) {
         return res.status(500).json({
@@ -790,13 +694,12 @@ app.get("/get_user_stories_list", async (req, res) => {
           .json({ error: "Failed to retrieve user stories list" });
       }
 
-      // Parse stories JSON strings into arrays for easier frontend handling
       const formattedResults = results.map((row) => ({
         user_id: row.user_id,
         username: row.user_name,
         avatar: row.avatar,
         user_email: row.user_email,
-        stories: JSON.parse(`[${row.stories}]`), // Convert the GROUP_CONCAT string back to an array
+        stories: JSON.parse(`[${row.stories}]`), 
       }));
 
       res.status(200).json({ users: formattedResults });
@@ -903,7 +806,6 @@ app.post("/delete_user_chat_list", async (req, res) => {
       return res.status(400).json({ error: "receiverId is required" });
     }
 
-    // Ensure delete_user_id is initialized as a JSON array if NULL
     const updateQuery = `
       UPDATE messages 
       SET delete_user_id = 
@@ -997,7 +899,6 @@ app.post("/block_user", async (req, res) => {
       }
 
       if (results.length === 0) {
-        // If no record exists, insert a new block
         const insertQuery = `INSERT INTO block_user (sender_id, receiver_id) VALUES (?, ?)`;
 
         db.query(insertQuery, [userId, receiverId], (insertErr) => {
@@ -1011,7 +912,6 @@ app.post("/block_user", async (req, res) => {
           return res.status(200).json({ message: "User blocked successfully" });
         });
       } else {
-        // If record exists, remove the block
         const deleteQuery = `DELETE FROM block_user WHERE sender_id = ? AND receiver_id = ?`;
 
         db.query(deleteQuery, [userId, receiverId], (deleteErr) => {
@@ -1174,7 +1074,6 @@ app.listen(3001, () => {
   console.log("Express server running on http://localhost:3001");
 });
 
-// WebSocket server
 const wss = new WebSocket.Server({ port: PORT }, () => {
   console.log(`WebSocket server running on ws://localhost:${PORT}`);
 });
