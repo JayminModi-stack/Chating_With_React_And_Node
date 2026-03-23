@@ -520,23 +520,23 @@ app.post("/user_view_stories_list", async (req, res) => {
             details: err.message,
           });
       }
-      if (results.length === 0) {
-        const updateQuery = `UPDATE stories SET stories_user_id = JSON_ARRAY_APPEND(stories_user_id, '$', ?), viewers = viewers + 1 WHERE user_id = ? AND id = ?;`;
-        db.query(
-          updateQuery,
-          [userId, receiverID, id],
-          (updateErr, updateResults) => {
-            if (updateErr) {
-              return res
-                .status(500)
-                .json({
-                  error: "Failed to update stories_user_id",
-                  details: updateErr.message,
-                });
-            }
-          },
-        );
-      }
+      // if (results.length === 0) {
+      //   const updateQuery = `UPDATE stories SET stories_user_id = JSON_ARRAY_APPEND(stories_user_id, '$', ?), viewers = viewers + 1 WHERE user_id = ? AND id = ?;`;
+      //   db.query(
+      //     updateQuery,
+      //     [userId, receiverID, id],
+      //     (updateErr, updateResults) => {
+      //       if (updateErr) {
+      //         return res
+      //           .status(500)
+      //           .json({
+      //             error: "Failed to update stories_user_id",
+      //             details: updateErr.message,
+      //           });
+      //       }
+      //     },
+      //   );
+      // }
       const baseUrl = `http://localhost:3001`;
       const selectQuery = `SELECT id,user_id,CONCAT(?, images_stories) AS images_stories,viewers,title,created_at FROM stories WHERE user_id = ? AND created_at BETWEEN DATE_SUB(NOW(), INTERVAL 24 HOUR) AND NOW()`;
       db.query(selectQuery, [baseUrl, receiverID], (err, results) => {

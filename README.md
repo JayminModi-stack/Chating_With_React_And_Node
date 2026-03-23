@@ -94,14 +94,12 @@ npm install
 
 * npm run start
 
----
-# User Login
+## 6. User Login
+* email:-    jaymin@gmail.com
+* Password:- Data@1234
 
-email:-    jaymin@gmail.com
-Password:- Data@1234
-
-email:-    jasminethompson@gmail.com
-Password:- Data@1234
+* email:-    jasminethompson@gmail.com
+* Password:- Data@1234
 
 ---
 

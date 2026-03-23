@@ -1,20 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Dropdown, Space } from "antd";
 import { UserProfileListActionHandler } from "../../Redux/Actions/common/UserProfileList";
 
 function Header() {
-  const location = useLocation();
   const userListImage = process.env.REACT_APP_USER_LIST_IMAGE;
   const dispatch = useDispatch();
   const Navigate = useNavigate();
   const [userProfileData, setUserProfileData] = useState([]);
-  const isActive = location.pathname;
   const [themeMode, setThemeMode] = useState(
     localStorage.getItem("themeMode") || "light",
   );
-
   const userprofilelistdata = useSelector(
     (state) => state?.UserProfileListData?.user_profile_list_data,
   );
@@ -73,71 +70,8 @@ function Header() {
             </svg>
           </Link>
         </div>
-
         <div className="tyn-appbar-content">
-          <ul className="tyn-appbar-nav tyn-appbar-nav-start">
-            <li
-              className={`tyn-appbar-item ${
-                isActive === "/addStoriesSettings" ? "active current-page" : ""
-              }`}
-              style={{ marginTop: "15px" }}
-            >
-              <Link className="tyn-appbar-link" to={"addStoriesSettings"}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  className="bi bi-subtract"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z"></path>
-                </svg>
-                <span className="d-none">Add Stories</span>
-              </Link>
-            </li>
-            <li
-              className={`tyn-appbar-item ${
-                isActive === "/stories" ? "active current-page" : ""
-              }`}
-              style={{ marginTop: "15px" }}
-            >
-              <Link className="tyn-appbar-link" to={"stories"}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  className="bi bi-safe-fill"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M9.778 9.414A2 2 0 1 1 6.95 6.586a2 2 0 0 1 2.828 2.828"></path>
-                  <path d="M2.5 0A1.5 1.5 0 0 0 1 1.5V3H.5a.5.5 0 0 0 0 1H1v3.5H.5a.5.5 0 0 0 0 1H1V12H.5a.5.5 0 0 0 0 1H1v1.5A1.5 1.5 0 0 0 2.5 16h12a1.5 1.5 0 0 0 1.5-1.5v-13A1.5 1.5 0 0 0 14.5 0zm3.036 4.464 1.09 1.09a3 3 0 0 1 3.476 0l1.09-1.09a.5.5 0 1 1 .707.708l-1.09 1.09c.74 1.037.74 2.44 0 3.476l1.09 1.09a.5.5 0 1 1-.707.708l-1.09-1.09a3 3 0 0 1-3.476 0l-1.09 1.09a.5.5 0 1 1-.708-.708l1.09-1.09a3 3 0 0 1 0-3.476l-1.09-1.09a.5.5 0 1 1 .708-.708M14 6.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 1 0"></path>
-                </svg>
-                <span className="d-none">Stories</span>
-              </Link>
-            </li>
-            <li
-              className={`tyn-appbar-item ${
-                isActive === "/faq" ? "active current-page" : ""
-              }`}
-              style={{ marginTop: "15px" }}
-            >
-              <Link className="tyn-appbar-link" to={"faq"}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  className="bi bi-question-octagon-fill"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353zM5.496 6.033a.237.237 0 0 1-.24-.247C5.35 4.091 6.737 3.5 8.005 3.5c1.396 0 2.672.73 2.672 2.24 0 1.08-.635 1.594-1.244 2.057-.737.559-1.01.768-1.01 1.486v.105a.25.25 0 0 1-.25.25h-.81a.25.25 0 0 1-.25-.246l-.004-.217c-.038-.927.495-1.498 1.168-1.987.59-.444.965-.736.965-1.371 0-.825-.628-1.168-1.314-1.168-.803 0-1.253.478-1.342 1.134-.018.137-.128.25-.266.25h-.825zm2.325 6.443c-.584 0-1.009-.394-1.009-.927 0-.552.425-.94 1.01-.94.609 0 1.028.388 1.028.94 0 .533-.42.927-1.029.927"></path>
-                </svg>
-                <span className="d-none">FAQ</span>
-              </Link>
-            </li>
-          </ul>
+          <ul className="tyn-appbar-nav tyn-appbar-nav-start"></ul>
           <ul className="tyn-appbar-nav tyn-appbar-nav-end">
             <li className="tyn-appbar-item" style={{ marginTop: "10px" }}>
               <div
@@ -217,8 +151,7 @@ function Header() {
                                           className="form-check-label small"
                                           htmlFor="dark"
                                         >
-                                          {" "}
-                                          On{" "}
+                                          On
                                         </label>
                                       </div>
                                     </li>
@@ -237,8 +170,7 @@ function Header() {
                                           className="form-check-label small"
                                           htmlFor="light"
                                         >
-                                          {" "}
-                                          Off{" "}
+                                          Off
                                         </label>
                                       </div>
                                     </li>
@@ -265,6 +197,51 @@ function Header() {
                                     <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"></path>
                                   </svg>
                                   <span>Profile</span>
+                                </Link>
+                              </li>
+                              <li>
+                                <Link to={"/addStories"}>
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="16"
+                                    height="16"
+                                    fill="currentColor"
+                                    className="bi bi-person"
+                                    viewBox="0 0 16 16"
+                                  >
+                                    <path d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z"></path>
+                                  </svg>
+                                  <span>Add Stories</span>
+                                </Link>
+                              </li>
+                              <li>
+                                <Link to={"/stories"}>
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="16"
+                                    height="16"
+                                    fill="currentColor"
+                                    className="bi bi-person"
+                                    viewBox="0 0 16 16"
+                                  >
+                                    <path d="M2.5 0A1.5 1.5 0 0 0 1 1.5V3H.5a.5.5 0 0 0 0 1H1v3.5H.5a.5.5 0 0 0 0 1H1V12H.5a.5.5 0 0 0 0 1H1v1.5A1.5 1.5 0 0 0 2.5 16h12a1.5 1.5 0 0 0 1.5-1.5v-13A1.5 1.5 0 0 0 14.5 0zm3.036 4.464 1.09 1.09a3 3 0 0 1 3.476 0l1.09-1.09a.5.5 0 1 1 .707.708l-1.09 1.09c.74 1.037.74 2.44 0 3.476l1.09 1.09a.5.5 0 1 1-.707.708l-1.09-1.09a3 3 0 0 1-3.476 0l-1.09 1.09a.5.5 0 1 1-.708-.708l1.09-1.09a3 3 0 0 1 0-3.476l-1.09-1.09a.5.5 0 1 1 .708-.708M14 6.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 1 0"></path>
+                                  </svg>
+                                  <span>View Stories</span>
+                                </Link>
+                              </li>
+                              <li>
+                                <Link to={"/faq"}>
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="16"
+                                    height="16"
+                                    fill="currentColor"
+                                    className="bi bi-person"
+                                    viewBox="0 0 16 16"
+                                  >
+                                    <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353zM5.496 6.033a.237.237 0 0 1-.24-.247C5.35 4.091 6.737 3.5 8.005 3.5c1.396 0 2.672.73 2.672 2.24 0 1.08-.635 1.594-1.244 2.057-.737.559-1.01.768-1.01 1.486v.105a.25.25 0 0 1-.25.25h-.81a.25.25 0 0 1-.25-.246l-.004-.217c-.038-.927.495-1.498 1.168-1.987.59-.444.965-.736.965-1.371 0-.825-.628-1.168-1.314-1.168-.803 0-1.253.478-1.342 1.134-.018.137-.128.25-.266.25h-.825zm2.325 6.443c-.584 0-1.009-.394-1.009-.927 0-.552.425-.94 1.01-.94.609 0 1.028.388 1.028.94 0 .533-.42.927-1.029.927"></path>
+                                  </svg>
+                                  <span>FAQ</span>
                                 </Link>
                               </li>
                               <li>
@@ -346,5 +323,4 @@ function Header() {
     </nav>
   );
 }
-
 export default Header;

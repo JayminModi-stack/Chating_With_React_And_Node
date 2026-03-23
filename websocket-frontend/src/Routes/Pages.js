@@ -8,7 +8,7 @@ import ChangePassword from "../Pages/ChangePassword/ChangePassword";
 const Pages = [
   { path: "", element: <Dashboard /> },
   { path: "/profile", element: <Profile /> },
-  { path: "/addStoriesSettings", element: <AddStoriesSettings /> },
+  { path: "/addStories", element: <AddStoriesSettings /> },
   { path: "/stories", element: <Stories /> },
   { path: "/faq", element: <Faq /> },
   { path: "/profile-change-password", element: <ChangePassword /> },
