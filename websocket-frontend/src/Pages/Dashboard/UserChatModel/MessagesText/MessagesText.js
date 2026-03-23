@@ -1,5 +1,7 @@
-import React from "react";
+import { useState } from "react";
 import { Button, Upload } from "antd";
+import IconButton from "@mui/material/IconButton";
+import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 
 function MessagesText({
   messages,
@@ -9,6 +11,9 @@ function MessagesText({
   handleChange,
   handleRemove,
 }) {
+  const [showEmoji, setShowEmoji] = useState(false);
+  const emojis = ["😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣", "😊", "😍"];
+
   return (
     <>
       <div style={{ width: "100%", background: "#FFF" }}>
@@ -18,10 +23,34 @@ function MessagesText({
           onChange={handleChange}
           onRemove={handleRemove}
           showUploadList={{ showPreviewIcon: false, showRemoveIcon: true }}
-        ></Upload>
+        />
       </div>
-
-      <div className="tyn-chat-form">
+      <div className="tyn-chat-form" style={{ position: "relative" }}>
+        {showEmoji && (
+          <div
+            style={{
+              position: "absolute",
+              bottom: "70px",
+              left: "10px",
+              background: "#fff",
+              border: "1px solid #ddd",
+              padding: "10px",
+              borderRadius: "10px",
+              boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
+              zIndex: 1000,
+            }}
+          >
+            {emojis.map((emoji, index) => (
+              <span
+                key={index}
+                style={{ fontSize: "20px", cursor: "pointer", margin: "5px" }}
+                onClick={() => setMessage(messages + emoji)}
+              >
+                {emoji}
+              </span>
+            ))}
+          </div>
+        )}
         <div className="tyn-chat-form-insert">
           <ul className="tyn-list-inline gap gap-3">
             <li className="d-none d-sm-block">
@@ -41,9 +70,13 @@ function MessagesText({
                 </Button>
               </Upload>
             </li>
+            <li className="d-none d-sm-block">
+              <IconButton onClick={() => setShowEmoji((prev) => !prev)}>
+                <EmojiEmotionsIcon />
+              </IconButton>
+            </li>
           </ul>
         </div>
-
         <div className="tyn-chat-form-enter">
           <input
             className="tyn-chat-form-input"
@@ -74,5 +107,4 @@ function MessagesText({
     </>
   );
 }
-
 export default MessagesText;
